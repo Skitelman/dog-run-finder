@@ -3,7 +3,7 @@ require 'open-uri'
 require 'nokogiri'
 require 'Geocoder'
 require 'pry'
-require_relative "Address"
+require_relative "./Address"
 
 class Import
 
@@ -23,7 +23,7 @@ class Import
 
   def self.get_coordinates(addresses)
     addresses.collect do |address|
-      sleep(0.2)
+      sleep(0..2)
       address.get_coordinates("New York, NY")
     end
   end
