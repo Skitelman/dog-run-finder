@@ -3,14 +3,14 @@ require 'open-uri'
 require 'nokogiri'
 require 'Geocoder'
 require 'pry'
-require_relative "./Address"
+require_relative "../lib/address"
 
 class Import
 
-  URL = "http://www.nycgovparks.org/bigapps/DPR_DogRuns_001.xml"
+  IMPORT_URL = "http://www.nycgovparks.org/bigapps/DPR_DogRuns_001.xml"
 
   def self.get_addresses
-    addresses = Nokogiri::XML(open(URL))
+    addresses = Nokogiri::XML(open(IMPORT_URL))
     address_array = addresses.search("Address").collect do |address|
       address_text = address.children.text
       if address_text == "" || address_text.include?("Except")
@@ -23,7 +23,7 @@ class Import
 
   def self.get_coordinates(addresses)
     addresses.collect do |address|
-      sleep(0..2)
+      sleep(0.2)
       address.get_coordinates("New York, NY")
     end
   end

@@ -3,7 +3,7 @@ require 'open-uri'
 require 'nokogiri'
 require 'Geocoder'
 require 'pry'
-require_relative "./Import"
+require_relative "../lib/import"
 
 class Address
   attr_accessor :name, :coordinates
@@ -13,7 +13,9 @@ class Address
   end
 
   def get_coordinates(city = "")
-    coordinates = Geocoder.coordinates(name + ", " + city)
+    @coordinates = Geocoder.coordinates(name + ", " + city)
+    # @coordinates = [40, -70]
+    self
   end
 
   def distance_to(other_address)
