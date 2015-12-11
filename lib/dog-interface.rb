@@ -18,7 +18,7 @@ class DogInterface
     until response == "exit" || response == "q"
       puts "What is your address?"
       user_address = self.get_user_address
-      puts "How far will you go to a dog run?"
+      puts "How many miles away from you should the dog run be?"
       user_max_distance = self.get_max_distance
       puts "Here are possible dog runs: "
       self.get_dog_runs(addresses, user_address, user_max_distance)
